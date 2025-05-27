@@ -1,0 +1,1 @@
+# Bu dosya app klasörünü bir Python paketi haline getirir 
