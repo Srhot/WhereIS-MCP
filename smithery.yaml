@@ -1,0 +1,29 @@
+version: 1
+name: whereis-mcp-app
+description: Jeolojik Veri MCP Sunucusu
+
+build:
+  dockerfile: Dockerfile
+  context: .
+
+run:
+  command: uvicorn mcp_server.server:app --host 0.0.0.0 --port $PORT
+  ports:
+    - 8081
+
+env:
+  - name: PORT
+    value: 8081
+  - name: APP_ENV
+    value: production
+  - name: DEBUG
+    value: "false"
+
+health:
+  path: /health
+  port: 8081
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3 

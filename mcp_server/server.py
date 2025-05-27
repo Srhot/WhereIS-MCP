@@ -155,7 +155,7 @@ async def websocket_endpoint(websocket: WebSocket):
         await mcp_server.disconnect_client(client_id)
 
 # Smithery için port yapılandırması
-port = int(os.getenv("PORT", 8000))
+port = int(os.getenv("PORT", 8081))
 
 if __name__ == "__main__":
     import uvicorn
