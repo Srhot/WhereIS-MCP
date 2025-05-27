@@ -5,11 +5,13 @@ description: Jeolojik Veri MCP Sunucusu
 build:
   dockerfile: Dockerfile
   context: .
+  timeout: 600  # 10 dakika build timeout
 
 run:
-  command: uvicorn mcp_server.server:app --host 0.0.0.0 --port $PORT
+  command: uvicorn mcp_server.server:app --host 0.0.0.0 --port ${PORT:-8081} --workers 1
   ports:
     - 8081
+  timeout: 300  # 5 dakika başlatma timeout
 
 env:
   - name: PORT
@@ -18,12 +20,22 @@ env:
     value: production
   - name: DEBUG
     value: "false"
+  - name: PYTHONUNBUFFERED
+    value: "1"
+  - name: PYTHONDONTWRITEBYTECODE
+    value: "1"
 
 health:
   path: /health
   port: 8081
-  initialDelaySeconds: 10
+  initialDelaySeconds: 30  # Başlangıç gecikmesi artırıldı
   periodSeconds: 30
-  timeoutSeconds: 5
+  timeoutSeconds: 10  # Timeout süresi artırıldı
   successThreshold: 1
-  failureThreshold: 3 
+  failureThreshold: 3
+
+resources:
+  cpu: 0.5
+  memory: 512Mi
+  minReplicas: 1
+  maxReplicas: 1 
