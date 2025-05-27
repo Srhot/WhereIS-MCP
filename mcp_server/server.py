@@ -87,7 +87,10 @@ class MCPServer:
             "message": "Bağlam güncellendi"
         }
 
-# FastAPI uygulaması
+# Smithery için port yapılandırması
+port = int(os.getenv("PORT", 8081))
+
+# Ana uygulama değişkeni (gunicorn için gerekli)
 app = FastAPI(title="MCP Sunucusu")
 
 # CORS ayarları
@@ -154,9 +157,7 @@ async def websocket_endpoint(websocket: WebSocket):
         })
         await mcp_server.disconnect_client(client_id)
 
-# Smithery için port yapılandırması
-port = int(os.getenv("PORT", 8081))
-
+# Sadece doğrudan çalıştırıldığında uvicorn'u başlat
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=port) 
+    uvicorn.run("mcp_server.server:app", host="0.0.0.0", port=port, reload=True) 
