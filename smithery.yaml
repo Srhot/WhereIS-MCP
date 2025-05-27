@@ -1,5 +1,5 @@
 version: 1
-name: whereis-mcp-app
+name: whereis-mcp
 description: Jeolojik Veri MCP Sunucusu
 
 build:
