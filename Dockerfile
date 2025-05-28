@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Port ayarı
-ENV PORT=8081
+ENV PORT=80
 
-# Gunicorn ile çalıştır
-CMD gunicorn mcp_server.server:app --bind 0.0.0.0:$PORT --worker-class uvicorn.workers.UvicornWorker --workers 1 --timeout 120 
+# Gunicorn ile çalıştır (Komut smithery.yaml tarafından sağlanacak)
+# CMD gunicorn mcp_server.server:app --bind 0.0.0.0:$PORT --worker-class uvicorn.workers.UvicornWorker --workers 1 --timeout 120 
