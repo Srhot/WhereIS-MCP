@@ -106,7 +106,7 @@ class MCPServer:
         }
 
 # Smithery için port yapılandırması
-port = int(os.getenv("PORT", 8081))
+port = int(os.getenv("PORT", 80))
 logger.info(f"Starting server on port {port}")
 
 # Ana uygulama değişkeni (gunicorn için gerekli)
