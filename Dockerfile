@@ -16,5 +16,8 @@ COPY . .
 # Port ayarı
 ENV PORT=80
 
+# Container başladığında çalıştırılacak komut
+ENTRYPOINT ["gunicorn", "mcp_server.server:app", "--bind", "0.0.0.0:80", "--worker-class", "uvicorn.workers.UvicornWorker", "--workers", "1", "--timeout", "180"]
+
 # Gunicorn ile çalıştır (Komut smithery.yaml tarafından sağlanacak)
 # CMD gunicorn mcp_server.server:app --bind 0.0.0.0:$PORT --worker-class uvicorn.workers.UvicornWorker --workers 1 --timeout 120 
