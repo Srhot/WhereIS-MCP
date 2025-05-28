@@ -7,7 +7,7 @@ build:
   context: .
 
 run:
-  command: gunicorn mcp_server.server:app --bind 0.0.0.0:$PORT --worker-class uvicorn.workers.UvicornWorker --workers 1 --timeout 120
+  command: gunicorn mcp_server.server:app --bind 0.0.0.0:$PORT --worker-class uvicorn.workers.UvicornWorker --workers 1 --timeout 180
   ports:
     - 8081
 
@@ -16,12 +16,14 @@ env:
     value: 8081
   - name: APP_ENV
     value: production
+  - name: DEBUG
+    value: "true"
 
 health:
   path: /health
   port: 8081
-  initialDelaySeconds: 60
-  periodSeconds: 30
-  timeoutSeconds: 30
+  initialDelaySeconds: 120
+  periodSeconds: 60
+  timeoutSeconds: 60
   successThreshold: 1
-  failureThreshold: 3 
+  failureThreshold: 5 
