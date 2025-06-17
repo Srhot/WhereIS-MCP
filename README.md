@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/srhot-whereis-mcp-badge.png)](https://mseep.ai/app/srhot-whereis-mcp)
+
 # Jeolojik Veri MCP Sunucusu
 
 Bu proje, jeolojik verileri işleyen ve sunan bir Model Context Protocol (MCP) sunucusudur. Sunucu, konum bazlı jeolojik verileri HTTP ve WebSocket protokolleri üzerinden sunar.
